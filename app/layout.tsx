@@ -1,79 +1,65 @@
-import type { Metadata } from 'next';
-import { Inter, JetBrains_Mono, Montserrat } from 'next/font/google';
 import './globals.css';
-import { APP_NAME, APP_DESCRIPTION } from '../lib/constants';
+import type { Metadata } from 'next';
+import { Inter, Montserrat, JetBrains_Mono } from 'next/font/google';
+import { Button } from '@/components/ui/button';
 
-// Font configurations
+// Font configuration
 const inter = Inter({
   subsets: ['latin'],
   display: 'swap',
-  variable: '--font-sans',
-});
-
-const jetbrainsMono = JetBrains_Mono({
-  subsets: ['latin'],
-  display: 'swap',
-  variable: '--font-mono',
+  variable: '--font-inter',
 });
 
 const montserrat = Montserrat({
   subsets: ['latin'],
   display: 'swap',
-  variable: '--font-display',
+  variable: '--font-montserrat',
+});
+
+const jetbrainsMono = JetBrains_Mono({
+  subsets: ['latin'],
+  display: 'swap',
+  variable: '--font-jetbrains-mono',
 });
 
 // Metadata for the application
 export const metadata: Metadata = {
-  title: {
-    default: APP_NAME,
-    template: `%s | ${APP_NAME}`,
-  },
-  description: APP_DESCRIPTION,
-  keywords: ['countdown', 'timer', 'event', 'customizable', 'countdown timer'],
-  authors: [
-    {
-      name: 'SimpleCountdown Team',
-      url: 'https://simplecountdown.org',
-    },
-  ],
+  title: 'SimpleCountdown.org',
+  description: 'Create beautiful, customizable countdowns for all your important moments',
+  keywords: ['countdown', 'timer', 'event', 'customizable', 'celebration'],
   creator: 'SimpleCountdown Team',
-  openGraph: {
-    type: 'website',
-    locale: 'en_US',
-    url: 'https://simplecountdown.org',
-    title: APP_NAME,
-    description: APP_DESCRIPTION,
-    siteName: APP_NAME,
-  },
-  twitter: {
-    card: 'summary_large_image',
-    title: APP_NAME,
-    description: APP_DESCRIPTION,
-    creator: '@simplecountdown',
-  },
   icons: {
-    icon: './assets/images/icons/favicon.ico',
-    shortcut: '/assets/images/icons/favicon.ico',
-    apple: '/apple-touch-icon.png',
+    icon: '/assets/images/icons/favicon.ico',
   },
-  manifest: '/site.webmanifest',
 };
 
-interface RootLayoutProps {
+export default function RootLayout({
+  children,
+}: {
   children: React.ReactNode;
-}
-
-export default function RootLayout({ children }: RootLayoutProps) {
+}) {
   return (
-    <html
-      lang="en"
-      suppressHydrationWarning
-      className={`${inter.variable} ${jetbrainsMono.variable} ${montserrat.variable}`}
-    >
-      <body className="min-h-screen bg-background-light dark:bg-background-dark antialiased">
-        <main className="relative flex min-h-screen flex-col">
+    <html lang="en" className={`${inter.variable} ${montserrat.variable} ${jetbrainsMono.variable}`}>
+      <body>
+        <header className="border-b border-slate-200 dark:border-slate-700">
+          <div className="container mx-auto px-4 py-4 flex justify-between items-center">
+            <h1 className="text-2xl font-display font-bold">
+              SimpleCountdown.org
+            </h1>
+            <div className="flex gap-4">
+              <Button variant="ghost" size="sm">Login</Button>
+              <Button size="sm">Get Started</Button>
+            </div>
+          </div>
+        </header>
+        <main className="container mx-auto px-4 py-6">
           {children}
         </main>
+        <footer className="border-t border-slate-200 dark:border-slate-700 py-6 mt-12">
+          <div className="container mx-auto px-4 text-center text-muted">
+            <p>© {new Date().getFullYear()} SimpleCountdown.org</p>
+          </div>
+        </footer>
       </body>
     </html>
   );
