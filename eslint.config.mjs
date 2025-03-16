@@ -1,72 +1,53 @@
+// @ts-check
 import eslint from '@eslint/js';
 import tseslint from 'typescript-eslint';
-import reactPlugin from 'eslint-plugin-react';
-import reactHooksPlugin from 'eslint-plugin-react-hooks';
-import a11yPlugin from 'eslint-plugin-jsx-a11y';
-import nextPlugin from '@next/eslint-plugin-next';
 
-export default [
+export default tseslint.config(
   eslint.configs.recommended,
   ...tseslint.configs.recommended,
   {
-    files: ['**/*.{ts,tsx}'],
     languageOptions: {
+      ecmaVersion: 2023,
+      sourceType: 'module',
       parser: tseslint.parser,
       parserOptions: {
-        ecmaVersion: 2021,
-        sourceType: 'module',
+        project: './tsconfig.json',
         ecmaFeatures: {
           jsx: true,
         },
-        project: './tsconfig.json',
       },
-    },
-    plugins: {
-      '@typescript-eslint': tseslint.plugin,
-      react: reactPlugin,
-      'react-hooks': reactHooksPlugin,
-      'jsx-a11y': a11yPlugin,
-      next: nextPlugin,
     },
     rules: {
-      // TypeScript specific rules
-      '@typescript-eslint/explicit-module-boundary-types': 'warn',
-      '@typescript-eslint/no-explicit-any': 'warn',
-      '@typescript-eslint/no-unused-vars': ['error', { argsIgnorePattern: '^_' }],
-      '@typescript-eslint/consistent-type-imports': 'error',
-      '@typescript-eslint/no-non-null-assertion': 'warn',
-
-      // React specific rules
-      'react/react-in-jsx-scope': 'off', // Not needed in Next.js
-      'react/prop-types': 'off', // We use TypeScript instead
-      'react-hooks/rules-of-hooks': 'error',
-      'react-hooks/exhaustive-deps': 'warn',
-
-      // General rules
+      // TypeScript rules
+      '@typescript-eslint/explicit-function-return-type': ['warn', {
+        allowExpressions: true,
+        allowTypedFunctionExpressions: true,
+      }],
+      '@typescript-eslint/no-explicit-any': 'error',
+      '@typescript-eslint/no-unused-vars': ['error', {
+        argsIgnorePattern: '^_',
+        varsIgnorePattern: '^_',
+      }],
+      '@typescript-eslint/consistent-type-imports': ['error', {
+        prefer: 'type-imports',
+        disallowTypeAnnotations: true,
+      }],
+      '@typescript-eslint/no-non-null-assertion': 'error',
+      '@typescript-eslint/prefer-nullish-coalescing': 'warn',
+      '@typescript-eslint/prefer-optional-chain': 'warn',
+      
+      // General JavaScript rules
       'no-console': ['warn', { allow: ['warn', 'error'] }],
       'prefer-const': 'error',
-      'no-restricted-imports': [
-        'error',
-        {
-          patterns: ['../*'], // Encourage absolute imports
-        },
-      ],
-    },
-    settings: {
-      react: {
-        version: 'detect',
-      },
+      'no-var': 'error',
+      'eqeqeq': 'error',
     },
   },
   {
-    ignores: [
-      'node_modules/',
-      '.next/',
-      'out/',
-      'public/',
-      'next.config.mjs',
-      'postcss.config.js',
-      'tailwind.config.ts',
-    ],
-  },
-];
+    // Apply rules specifically to TypeScript files
+    files: ['**/*.ts', '**/*.tsx'],
+    rules: {
+      '@typescript-eslint/explicit-module-boundary-types': 'warn',
+    },
+  }
+);
