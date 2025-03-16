@@ -23,10 +23,10 @@ export default [
     },
     plugins: {
       '@typescript-eslint': tseslint.plugin,
-      'react': reactPlugin,
+      react: reactPlugin,
       'react-hooks': reactHooksPlugin,
       'jsx-a11y': a11yPlugin,
-      'next': nextPlugin,
+      next: nextPlugin,
     },
     rules: {
       // TypeScript specific rules
@@ -35,13 +35,13 @@ export default [
       '@typescript-eslint/no-unused-vars': ['error', { argsIgnorePattern: '^_' }],
       '@typescript-eslint/consistent-type-imports': 'error',
       '@typescript-eslint/no-non-null-assertion': 'warn',
-      
+
       // React specific rules
       'react/react-in-jsx-scope': 'off', // Not needed in Next.js
       'react/prop-types': 'off', // We use TypeScript instead
       'react-hooks/rules-of-hooks': 'error',
       'react-hooks/exhaustive-deps': 'warn',
-      
+
       // General rules
       'no-console': ['warn', { allow: ['warn', 'error'] }],
       'prefer-const': 'error',

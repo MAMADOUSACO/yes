@@ -1,4 +1,4 @@
-import * as React from "react";
+import * as React from 'react';
 import {
   HexColorPicker,
   HexColorInput,
@@ -9,50 +9,48 @@ import {
   HslaColorPicker,
   HslaStringColorPicker,
   RgbaColorPicker,
-} from "react-colorful";
-import { cva, type VariantProps } from "class-variance-authority";
+} from 'react-colorful';
+import { cva, type VariantProps } from 'class-variance-authority';
 
-import { cn } from "../../../lib/utils";
+import { cn } from '../../../lib/utils';
 
 /**
  * Color picker container styles
  */
-const colorPickerContainerVariants = cva(
-  "relative",
-  {
-    variants: {
-      size: {
-        default: "w-64",
-        sm: "w-48",
-        lg: "w-80",
-        xl: "w-96",
-        custom: "", // Will use the className for custom sizing
-      },
-      variant: {
-        default: "",
-        inline: "w-full flex flex-col space-y-3",
-        popover: "bg-white dark:bg-slate-950 border border-slate-200 dark:border-slate-800 rounded-lg p-3 shadow-lg",
-      },
+const colorPickerContainerVariants = cva('relative', {
+  variants: {
+    size: {
+      default: 'w-64',
+      sm: 'w-48',
+      lg: 'w-80',
+      xl: 'w-96',
+      custom: '', // Will use the className for custom sizing
     },
-    defaultVariants: {
-      size: "default",
-      variant: "default",
+    variant: {
+      default: '',
+      inline: 'w-full flex flex-col space-y-3',
+      popover:
+        'bg-white dark:bg-slate-950 border border-slate-200 dark:border-slate-800 rounded-lg p-3 shadow-lg',
     },
-  }
-);
+  },
+  defaultVariants: {
+    size: 'default',
+    variant: 'default',
+  },
+});
 
 /**
  * Color format types
  */
-export type ColorFormat = 
-  | "hex"
-  | "rgb" 
-  | "rgba"
-  | "rgb-string" 
-  | "hsl" 
-  | "hsla"
-  | "hsl-string"
-  | "hsla-string";
+export type ColorFormat =
+  | 'hex'
+  | 'rgb'
+  | 'rgba'
+  | 'rgb-string'
+  | 'hsl'
+  | 'hsla'
+  | 'hsl-string'
+  | 'hsla-string';
 
 /**
  * Color value types
@@ -88,7 +86,7 @@ export type HslaStringColor = string;
 /**
  * Union type for all possible color values
  */
-export type ColorValue = 
+export type ColorValue =
   | HexColor
   | RgbColor
   | RgbaColor
@@ -104,7 +102,7 @@ export type ColorValue =
  */
 export interface ColorPickerProps<T extends ColorValue = HexColor>
   extends VariantProps<typeof colorPickerContainerVariants>,
-    Omit<React.HTMLAttributes<HTMLDivElement>, "color" | "onChange"> {
+    Omit<React.HTMLAttributes<HTMLDivElement>, 'color' | 'onChange'> {
   /**
    * Color format to use
    */
@@ -157,11 +155,11 @@ export function ColorPicker<T extends ColorValue = HexColor>({
   labelClassName,
   size,
   variant,
-  format = "hex" as ColorFormat,
+  format = 'hex' as ColorFormat,
   color,
   onChange,
   showInput = true,
-  placeholder = "Enter a color value",
+  placeholder = 'Enter a color value',
   label,
   disabled = false,
   ...props
@@ -172,28 +170,28 @@ export function ColorPicker<T extends ColorValue = HexColor>({
       color: color as any,
       onChange: onChange as any,
       className: cn(
-        "w-full rounded-md",
-        disabled && "opacity-50 cursor-not-allowed",
+        'w-full rounded-md',
+        disabled && 'cursor-not-allowed opacity-50',
         pickerClassName
       ),
     };
 
     switch (format) {
-      case "hex":
+      case 'hex':
         return <HexColorPicker {...pickerProps} />;
-      case "rgb":
+      case 'rgb':
         return <RgbColorPicker {...pickerProps} />;
-      case "rgba":
+      case 'rgba':
         return <RgbaColorPicker {...pickerProps} />;
-      case "rgb-string":
+      case 'rgb-string':
         return <RgbStringColorPicker {...pickerProps} />;
-      case "hsl":
+      case 'hsl':
         return <HslColorPicker {...pickerProps} />;
-      case "hsla":
+      case 'hsla':
         return <HslaColorPicker {...pickerProps} />;
-      case "hsl-string":
+      case 'hsl-string':
         return <HslStringColorPicker {...pickerProps} />;
-      case "hsla-string":
+      case 'hsla-string':
         return <HslaStringColorPicker {...pickerProps} />;
       default:
         return <HexColorPicker {...pickerProps} />;
@@ -204,7 +202,7 @@ export function ColorPicker<T extends ColorValue = HexColor>({
   const renderInput = () => {
     if (!showInput) return null;
 
-    if (format === "hex") {
+    if (format === 'hex') {
       return (
         <HexColorInput
           color={color as string}
@@ -213,10 +211,10 @@ export function ColorPicker<T extends ColorValue = HexColor>({
           placeholder={placeholder}
           disabled={disabled}
           className={cn(
-            "w-full px-3 py-2 border border-slate-300 dark:border-slate-700 rounded-md",
-            "bg-white dark:bg-slate-950 text-slate-900 dark:text-slate-50",
-            "focus:outline-none focus:ring-2 focus:ring-slate-400 dark:focus:ring-slate-600",
-            disabled && "opacity-50 cursor-not-allowed",
+            'w-full rounded-md border border-slate-300 px-3 py-2 dark:border-slate-700',
+            'bg-white text-slate-900 dark:bg-slate-950 dark:text-slate-50',
+            'focus:outline-none focus:ring-2 focus:ring-slate-400 dark:focus:ring-slate-600',
+            disabled && 'cursor-not-allowed opacity-50',
             inputClassName
           )}
         />
@@ -227,18 +225,14 @@ export function ColorPicker<T extends ColorValue = HexColor>({
     return (
       <input
         type="text"
-        value={
-          typeof color === "object" 
-            ? JSON.stringify(color) 
-            : String(color)
-        }
+        value={typeof color === 'object' ? JSON.stringify(color) : String(color)}
         readOnly
         disabled={disabled}
         className={cn(
-          "w-full px-3 py-2 border border-slate-300 dark:border-slate-700 rounded-md",
-          "bg-white dark:bg-slate-950 text-slate-900 dark:text-slate-50",
-          "focus:outline-none focus:ring-2 focus:ring-slate-400 dark:focus:ring-slate-600",
-          disabled && "opacity-50 cursor-not-allowed",
+          'w-full rounded-md border border-slate-300 px-3 py-2 dark:border-slate-700',
+          'bg-white text-slate-900 dark:bg-slate-950 dark:text-slate-50',
+          'focus:outline-none focus:ring-2 focus:ring-slate-400 dark:focus:ring-slate-600',
+          disabled && 'cursor-not-allowed opacity-50',
           inputClassName
         )}
       />
@@ -246,17 +240,11 @@ export function ColorPicker<T extends ColorValue = HexColor>({
   };
 
   return (
-    <div 
-      className={cn(
-        colorPickerContainerVariants({ size, variant }),
-        className
-      )}
-      {...props}
-    >
+    <div className={cn(colorPickerContainerVariants({ size, variant }), className)} {...props}>
       {label && (
-        <label 
+        <label
           className={cn(
-            "block text-sm font-medium text-slate-700 dark:text-slate-300 mb-2",
+            'mb-2 block text-sm font-medium text-slate-700 dark:text-slate-300',
             labelClassName
           )}
         >
@@ -264,11 +252,7 @@ export function ColorPicker<T extends ColorValue = HexColor>({
         </label>
       )}
       {renderColorPicker()}
-      {showInput && (
-        <div className="mt-2">
-          {renderInput()}
-        </div>
-      )}
+      {showInput && <div className="mt-2">{renderInput()}</div>}
     </div>
   );
 }
@@ -276,36 +260,28 @@ export function ColorPicker<T extends ColorValue = HexColor>({
 /**
  * Specific Hex Color Picker component for convenience
  */
-export function HexColorPickerField({
-  ...props
-}: Omit<ColorPickerProps<HexColor>, "format">) {
+export function HexColorPickerField({ ...props }: Omit<ColorPickerProps<HexColor>, 'format'>) {
   return <ColorPicker<HexColor> format="hex" {...props} />;
 }
 
 /**
  * Specific RGB Color Picker component for convenience
  */
-export function RgbColorPickerField({
-  ...props
-}: Omit<ColorPickerProps<RgbColor>, "format">) {
+export function RgbColorPickerField({ ...props }: Omit<ColorPickerProps<RgbColor>, 'format'>) {
   return <ColorPicker<RgbColor> format="rgb" {...props} />;
 }
 
 /**
  * Specific RGBA Color Picker component for convenience
  */
-export function RgbaColorPickerField({
-  ...props
-}: Omit<ColorPickerProps<RgbaColor>, "format">) {
+export function RgbaColorPickerField({ ...props }: Omit<ColorPickerProps<RgbaColor>, 'format'>) {
   return <ColorPicker<RgbaColor> format="rgba" {...props} />;
 }
 
 /**
  * Specific HSL Color Picker component for convenience
  */
-export function HslColorPickerField({
-  ...props
-}: Omit<ColorPickerProps<HslColor>, "format">) {
+export function HslColorPickerField({ ...props }: Omit<ColorPickerProps<HslColor>, 'format'>) {
   return <ColorPicker<HslColor> format="hsl" {...props} />;
 }
 

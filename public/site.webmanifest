@@ -1,8 +1,8 @@
 {
-    "name": "SimpleCountdown.org",
-    "short_name": "SimpleCountdown",
-    "theme_color": "#0ea5e9",
-    "background_color": "#ffffff",
-    "display": "standalone",
-    "start_url": "/"
+  "name": "SimpleCountdown.org",
+  "short_name": "SimpleCountdown",
+  "theme_color": "#0ea5e9",
+  "background_color": "#ffffff",
+  "display": "standalone",
+  "start_url": "/"
 }

@@ -6,7 +6,6 @@
     "module": "esnext",
     "moduleResolution": "bundler",
     "jsx": "preserve",
-    
     // Type Checking (Enhanced Strict Mode)
     "strict": true,
     "noImplicitAny": true,
@@ -17,7 +16,6 @@
     "noImplicitThis": true,
     "useUnknownInCatchVariables": true,
     "alwaysStrict": true,
-    
     // Advanced Type Checking
     "noUncheckedIndexedAccess": true,
     "noImplicitReturns": true,
@@ -27,33 +25,26 @@
     "noImplicitOverride": true,
     "allowUnreachableCode": false,
     "allowUnusedLabels": false,
-    
     // Error Reporting Enhancements
     "noErrorTruncation": true,
     "preserveWatchOutput": true,
-    
     // Module Resolution
     "allowSyntheticDefaultImports": true,
     "esModuleInterop": true,
     "isolatedModules": true,
     "resolveJsonModule": true,
     "verbatimModuleSyntax": true,
-    
     // Class Features
     "useDefineForClassFields": true,
-    
     // Code Generation
     "importHelpers": true,
     "inlineSources": true,
-    
     // Source Maps
     "sourceMap": true,
     "declarationMap": true,
-    
     // Type Declarations
     "declaration": true,
     "declarationDir": "./dist/types",
-    
     // Project Structure
     "baseUrl": ".",
     "rootDir": ".",
@@ -73,7 +64,6 @@
       "@services/*": ["./src/lib/services/*"],
       "@constants/*": ["./src/lib/constants.ts"]
     },
-    
     // Next.js Specific
     "plugins": [
       {
@@ -81,24 +71,14 @@
       }
     ],
     "incremental": true,
-    
     // Output Options
     "skipLibCheck": true,
-    "forceConsistentCasingInFileNames": true
+    "forceConsistentCasingInFileNames": true,
+    "allowJs": true,
+    "noEmit": true
   },
-  "include": [
-    "next-env.d.ts",
-    "**/*.ts",
-    "**/*.tsx",
-    ".next/types/**/*.ts",
-    "src/**/*.json"
-  ],
-  "exclude": [
-    "node_modules",
-    "dist",
-    ".next",
-    "out"
-  ],
+  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts", "src/**/*.json"],
+  "exclude": ["node_modules", "dist", ".next", "out"],
   "watchOptions": {
     "watchFile": "useFsEvents",
     "watchDirectory": "useFsEvents",

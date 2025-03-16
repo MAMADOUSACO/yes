@@ -1,4 +1,6 @@
-/** @type {import('next').NextConfig} */
+/**
+ * @type {import('next').NextConfig}
+ */
 const nextConfig = {
   reactStrictMode: true,
   swcMinify: true,
@@ -7,28 +9,32 @@ const nextConfig = {
     remotePatterns: [
       {
         protocol: 'https',
-        hostname: 'simplecountdown.org',
+        hostname: 'placehold.co',
       },
     ],
   },
   experimental: {
     typedRoutes: true,
     serverActions: {
-      allowedOrigins: ['localhost:3000', 'simplecountdown.org'],
+      bodySizeLimit: '2mb',
     },
   },
-  compiler: {
-    removeConsole: process.env.NODE_ENV === 'production',
-  },
-  // Add custom webpack configuration if needed for specific libraries
   webpack: (config) => {
-    // Example: special handling for certain packages
-    // config.resolve.alias['some-package'] = 'alternative-package'
+    // Add support for importing audio files
+    config.module.rules.push({
+      test: /\.(mp3|wav|ogg)$/,
+      use: {
+        loader: 'file-loader',
+        options: {
+          name: '[name].[hash].[ext]',
+          publicPath: '/_next/static/media/',
+          outputPath: 'static/media/',
+        },
+      },
+    });
 
     return config;
   },
-  // Output standalone build for easier deployments
-  output: 'standalone',
 };
 
 export default nextConfig;

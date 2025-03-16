@@ -5,7 +5,8 @@
 // App metadata
 export const APP_NAME = 'SimpleCountdown.org';
 export const APP_VERSION = '0.1.0';
-export const APP_DESCRIPTION = 'Create highly customizable, beautiful countdowns with complete control over appearance and behavior';
+export const APP_DESCRIPTION =
+  'Create highly customizable, beautiful countdowns with complete control over appearance and behavior';
 
 // Time constants (in milliseconds)
 export const TIME_CONSTANTS = {

@@ -33,29 +33,26 @@ export const metadata: Metadata = {
   },
 };
 
-export default function RootLayout({
-  children,
-}: {
-  children: React.ReactNode;
-}) {
+export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en" className={`${inter.variable} ${montserrat.variable} ${jetbrainsMono.variable}`}>
+    <html
+      lang="en"
+      className={`${inter.variable} ${montserrat.variable} ${jetbrainsMono.variable}`}
+    >
       <body>
         <header className="border-b border-slate-200 dark:border-slate-700">
-          <div className="container mx-auto px-4 py-4 flex justify-between items-center">
-            <h1 className="text-2xl font-display font-bold">
-              SimpleCountdown.org
-            </h1>
+          <div className="container mx-auto flex items-center justify-between px-4 py-4">
+            <h1 className="font-display text-2xl font-bold">SimpleCountdown.org</h1>
             <div className="flex gap-4">
-              <Button variant="ghost" size="sm">Login</Button>
+              <Button variant="ghost" size="sm">
+                Login
+              </Button>
               <Button size="sm">Get Started</Button>
             </div>
           </div>
         </header>
-        <main className="container mx-auto px-4 py-6">
-          {children}
-        </main>
-        <footer className="border-t border-slate-200 dark:border-slate-700 py-6 mt-12">
+        <main className="container mx-auto px-4 py-6">{children}</main>
+        <footer className="mt-12 border-t border-slate-200 py-6 dark:border-slate-700">
           <div className="container mx-auto px-4 text-center text-muted">
             <p>© {new Date().getFullYear()} SimpleCountdown.org</p>
           </div>

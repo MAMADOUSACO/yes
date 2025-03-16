@@ -3,10 +3,12 @@
 @tailwind utilities;
 
 :root {
-  --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+  --font-sans:
+    'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
   --font-mono: 'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
-  --font-display: 'Montserrat', 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-  
+  --font-display:
+    'Montserrat', 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+
   /* Default light theme colors */
   --color-background: 255 255 255;
   --color-foreground: 15 23 42;
@@ -28,29 +30,36 @@
   html {
     @apply antialiased;
   }
-  
+
   body {
-    @apply bg-background-light dark:bg-background-dark text-slate-900 dark:text-slate-50 transition-colors duration-300;
-    font-feature-settings: "rlig" 1, "calt" 1;
+    @apply bg-background-light dark:bg-background-dark text-slate-900 transition-colors duration-300 dark:text-slate-50;
+    font-feature-settings:
+      'rlig' 1,
+      'calt' 1;
   }
-  
-  h1, h2, h3, h4, h5, h6 {
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
     @apply font-display font-bold tracking-tight;
   }
-  
+
   /* Custom scrollbar */
   ::-webkit-scrollbar {
     @apply w-2;
   }
-  
+
   ::-webkit-scrollbar-track {
     @apply bg-transparent;
   }
-  
+
   ::-webkit-scrollbar-thumb {
-    @apply bg-slate-300 dark:bg-slate-700 rounded-full;
+    @apply rounded-full bg-slate-300 dark:bg-slate-700;
   }
-  
+
   ::-webkit-scrollbar-thumb:hover {
     @apply bg-slate-400 dark:bg-slate-600;
   }
@@ -58,19 +67,19 @@
 
 @layer components {
   .countdown-digit {
-    @apply font-mono text-4xl md:text-6xl font-bold transition-all duration-150;
+    @apply font-mono text-4xl font-bold transition-all duration-150 md:text-6xl;
   }
-  
+
   .countdown-label {
-    @apply text-xs md:text-sm uppercase tracking-wider font-medium text-slate-500 dark:text-slate-400;
+    @apply text-xs font-medium uppercase tracking-wider text-slate-500 dark:text-slate-400 md:text-sm;
   }
-  
+
   .countdown-separator {
-    @apply text-2xl md:text-4xl font-light mx-1 text-slate-400 dark:text-slate-500;
+    @apply mx-1 text-2xl font-light text-slate-400 dark:text-slate-500 md:text-4xl;
   }
-  
+
   .glass-panel {
-    @apply bg-white/10 dark:bg-slate-900/20 backdrop-blur-lg border border-white/20 dark:border-slate-700/30 rounded-xl shadow-soft;
+    @apply shadow-soft rounded-xl border border-white/20 bg-white/10 backdrop-blur-lg dark:border-slate-700/30 dark:bg-slate-900/20;
   }
 }
 
@@ -78,19 +87,19 @@
   .text-balance {
     text-wrap: balance;
   }
-  
+
   .text-pretty {
     text-wrap: pretty;
   }
-  
+
   .animation-delay-300 {
     animation-delay: 300ms;
   }
-  
+
   .animation-delay-600 {
     animation-delay: 600ms;
   }
-  
+
   .animation-delay-900 {
     animation-delay: 900ms;
   }
