@@ -23,7 +23,6 @@ export default tseslint.config(
         allowExpressions: true,
         allowTypedFunctionExpressions: true,
       }],
-      '@typescript-eslint/no-explicit-any': 'error',
       '@typescript-eslint/no-unused-vars': ['error', {
         argsIgnorePattern: '^_',
         varsIgnorePattern: '^_',
@@ -48,6 +47,13 @@ export default tseslint.config(
     files: ['**/*.ts', '**/*.tsx'],
     rules: {
       '@typescript-eslint/explicit-module-boundary-types': 'warn',
+    },
+  },
+  // Special rule override for config files to allow require()
+  {
+    files: ['*.config.ts', '*.config.js', '*.config.mjs'],
+    rules: {
+      '@typescript-eslint/no-var-requires': 'off',
     },
   }
 );
